@@ -5,8 +5,6 @@ import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { ImgContext } from "../imgContext";
 import { Button } from "@/components/ui/button";
-import { PutBlobResult } from "@vercel/blob";
-import { FileObject } from "openai/resources/files.mjs";
 
 const ItemTypes = {
   IMAGE: "image",
@@ -37,7 +35,6 @@ function Draggable({
       }
     },
   });
-  console.log(src);
 
   return (
     <img
@@ -111,6 +108,7 @@ export default function ViewPage() {
           setOpenCaptionModal(false);
           
         }}
+        images={imageArray}
       />
     </>
   );

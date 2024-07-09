@@ -49,7 +49,6 @@ export default function FileUploader() {
     });
 
     const responseData = await aiResponse.json();
-    console.log(responseData);
 
     // Set llmResponse with the response data
     setLlmResponse(JSON.parse(responseData));

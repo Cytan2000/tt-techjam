@@ -38,7 +38,6 @@ function Draggable({
       }
     },
   });
-  console.log(src);
 
   return (
     <img
@@ -113,6 +112,7 @@ export default function ViewPage() {
           setOpenCaptionModal(false);
           
         }}
+        images={imageArray}
       />
     </>
   );

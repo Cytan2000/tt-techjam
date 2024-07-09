@@ -1,36 +1,37 @@
 // pages/index.js
-"use client"
+"use client";
 import FileUploader from "@/components/file-uploader";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
 export default function Upload() {
-  const searchParams = useSearchParams();
-  const code = searchParams.get('code');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (code) {
-        try {
-          const response = await fetch('/api/auth', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ code }),
-          });
-          const data = await response.json();
-          console.log('Fetched data:', data);
-          window.localStorage.setItem('accessToken', data.access_token);
-          console.log('Token set in local storage:', data.access_token);
-        } catch (error) {
-          console.error('Error exchanging code for token:', error);
+  try {
+    const searchParams = useSearchParams();
+    const code = searchParams.get("code");
+    useEffect(() => {
+      const fetchData = async () => {
+        if (code) {
+          try {
+            const response = await fetch("/api/auth", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ code }),
+            });
+            const data = await response.json();
+            console.log("Fetched data:", data);
+            // localStorage.setItem('accessToken', data.access_token);
+            console.log("Token set in local storage:", data.access_token);
+          } catch (error) {
+            console.error("Error exchanging code for token:", error);
+          }
         }
-      }
-    };
+      };
 
-    fetchData();
-  }, [code]);
+      fetchData();
+    }, [code]);
+  } catch (error) {}
 
   return (
     <div className="flex flex-col items-center py-6 md:py-8 lg:py-12">

@@ -1,13 +1,10 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 import { useContext, useState } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { ImgContext } from "../imgContext";
-import { Button } from "@/components/ui/button";
-import { useRouter, useSearchParams } from "next/navigation";
-import { PutBlobResult } from "@vercel/blob";
-import { FileObject } from "openai/resources/files.mjs";
 
 const ItemTypes = {
   IMAGE: "image",
@@ -56,7 +53,8 @@ export default function ViewPage() {
   // console.log(window.localStorage.getItem('accessToken'));
   const { storedFiles, llmResponse } = useContext(ImgContext);
   const mappedData = llmResponse.map((item: any) => ({
-    image: storedFiles[item.original_position].file,}))
+    image: storedFiles[item.original_position].file,
+  }));
 
   const [imageArray, setImageArray] = useState(mappedData);
 
@@ -109,7 +107,6 @@ export default function ViewPage() {
         onSubmit={(caption) => {
           console.log(caption); // Use this return together with the rearrange images to upload to tiktok
           setOpenCaptionModal(false);
-          
         }}
         images={imageArray}
       />

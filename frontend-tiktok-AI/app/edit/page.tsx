@@ -55,7 +55,6 @@ function Draggable({
 export default function ViewPage() {
   // console.log(window.localStorage.getItem('accessToken'));
   const { storedFiles, llmResponse } = useContext(ImgContext);
-  console.log(localStorage.getItem("accessToken"));
   const mappedData = llmResponse.map((item: any) => ({
     image: storedFiles[item.original_position].file,}))
 

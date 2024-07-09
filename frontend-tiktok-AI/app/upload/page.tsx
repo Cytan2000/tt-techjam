@@ -21,7 +21,7 @@ export default function Upload() {
           });
           const data = await response.json();
           console.log('Fetched data:', data);
-          localStorage.setItem('accessToken', data.access_token);
+          window.localStorage.setItem('accessToken', data.access_token);
           console.log('Token set in local storage:', data.access_token);
         } catch (error) {
           console.error('Error exchanging code for token:', error);
